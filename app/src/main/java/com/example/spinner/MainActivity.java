@@ -18,12 +18,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Spinner dept=findViewById(R.id.deptxml);
+        final Spinner dept=findViewById(R.id.deptxml);
         Spinner sem=findViewById(R.id.semxml);
 
-        ArrayList<String> depart=new ArrayList<>();
+        final ArrayList<String> depart=new ArrayList<>();
         ArrayList<String> semes=new ArrayList<>();
-        ArrayAdapter<String> adapt = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,depart);
+        final ArrayAdapter<String> adapt = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,depart);
 
         depart.add("select");
         depart.add("Civil");
@@ -33,6 +33,19 @@ public class MainActivity extends AppCompatActivity {
         depart.add("CS");
 
         dept.setAdapter(adapt);
+
+        dept.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String item = (String)dept.getItemAtPosition(position);
+                Toast.makeText(MainActivity.this,item, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
 
@@ -45,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
         semes.add("8");
 
         sem.setAdapter(adp);
+
+
     }
 
 
